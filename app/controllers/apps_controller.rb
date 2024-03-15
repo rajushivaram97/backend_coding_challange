@@ -5,6 +5,10 @@ class AppsController < ApplicationController
     @apps = filter_apps
   end
 
+  def unpurchased
+    @unpurchased_apps = App.unpurchased
+  end
+
   private
 
     # Only allow a list of trusted parameters through.

@@ -4,4 +4,4 @@ class User < ApplicationRecord
   
     # Ensure the email is unique
     validates :email, presence: true, uniqueness: true
-  end  
+  end

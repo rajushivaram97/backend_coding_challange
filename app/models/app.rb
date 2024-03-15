@@ -10,4 +10,14 @@ class App < ApplicationRecord
     validates :price_tier, presence: true, numericality: { only_integer: true, greater_than: 0, less_than_or_equal_to: 10 }
   
     # You could add custom scopes or methods to filter apps by various attributes
+
+    def self.unpurchased
+        App.left_outer_joins(:purchases).where(purchases: { app_id: nil })
+    end
+
+    # RAW SQL
+    # SELECT "apps".* FROM "apps"
+    # LEFT OUTER JOIN "purchases" ON "purchases"."app_id" = "apps"."id"
+    # WHERE "purchases"."app_id" IS NULL;
+
   end  
